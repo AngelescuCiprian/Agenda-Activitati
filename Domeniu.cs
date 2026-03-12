@@ -17,6 +17,11 @@ namespace ProiectPAW
             this.culoare = "Gri";
         }
 
+        public Domeniu(string titlu) : base(titlu, "")
+        {
+            this.culoare = "Gri";
+        }
+
         public Domeniu(string titlu,string descriere, string culoare):base(titlu,descriere)
         {
             this.culoare = culoare;
