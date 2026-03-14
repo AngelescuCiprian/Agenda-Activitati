@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace ProiectPAW
 {
-    enum StatusActivitate
+    public enum StatusActivitate
     {
         Noua,
         InProgres,
