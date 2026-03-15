@@ -5,3 +5,10 @@ C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\bin\Debug\ProiectPAW.exe
 C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\bin\Debug\ProiectPAW.pdb
 C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.exe
 C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.pdb
+C:\Users\angci\source\repos\Agenda-Activitati\bin\Debug\ProiectPAW.exe.config
+C:\Users\angci\source\repos\Agenda-Activitati\bin\Debug\ProiectPAW.exe
+C:\Users\angci\source\repos\Agenda-Activitati\bin\Debug\ProiectPAW.pdb
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.AssemblyReference.cache
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.CoreCompileInputs.cache
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.exe
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.pdb

@@ -249,6 +249,11 @@ namespace ProiectPAW
             p.EliminaActivitate(idActivitate);
             return p;
         }
+        public static Proiect operator -(Proiect p, Activitate act)
+        {
+            if (act != null) p.EliminaActivitate(act.Id);
+            return p;
+        }
         //compara dupa nr de activitati
         public static bool operator >(Proiect p1, Proiect p2)
         {
