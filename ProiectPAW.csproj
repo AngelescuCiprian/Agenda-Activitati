@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activitate.cs" />
+    <Compile Include="AgendaActivitati.cs" />
     <Compile Include="Domeniu.cs" />
     <Compile Include="ElementAgenda.cs" />
     <Compile Include="IExportabil.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Proiect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
