@@ -35,8 +35,8 @@ namespace ProiectPAW
         public ElementAgenda()
         {
             this.id = ++ElementAgenda.contorID;
-            this.titlu = " ";
-            this.descriere = " ";
+            this.titlu = "NECUNOSCUT";
+            this.descriere = "NESPECIFICAT";
             this.dataCreare = DateTime.Now;
         }
         //constructor cu parametri

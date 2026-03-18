@@ -8,6 +8,12 @@ namespace ProiectPAW
 {
     class Program
     {
+        // Metoda EXTERNA clasei AgendaActivitati care se aboneaza la event
+        // Are aceeasi semnatura ca delegate-ul: void(object sender, AgendaEventArgs e)
+        static void CandSeModificaAgenda(object sender,AgendaEventArgs e)
+        {
+            Console.WriteLine($"  >> NOTIFICARE [{e.Actiune}]: {e.NumeElement}");
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("=== AGENDA DE ACTIVITATI - Test Clase ===\n");
@@ -172,10 +178,12 @@ namespace ProiectPAW
             #endregion
 
            
-            #region Test AGENDA(fara DELEGATE/EVENT)
+            #region Test AGENDA (cu DELEGATE/EVENT)
             Console.WriteLine("\n\n=== TEST AGENDA  ===\n");
 
             AgendaActivitati agenda = new AgendaActivitati();
+            // Abonare la event
+            agenda.NotificareModificare += new AgendaEventHandler(CandSeModificaAgenda);
             Console.WriteLine("--- Adaugam domenii  ---");
             agenda.AdaugaDomeniu(facultate);
             agenda.AdaugaDomeniu(munca);

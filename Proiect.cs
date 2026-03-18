@@ -89,7 +89,7 @@ namespace ProiectPAW
             {
                 for (int i = 0; i < this.count; i++)
                 {
-                    if (String.Equals(this.activitati[i].Titlu, Titlu)) this.activitati[i].Titlu = value.ToString();
+                    if (String.Equals(this.activitati[i].Titlu, Titlu)) this.activitati[i]= value;
                 }
             }
 

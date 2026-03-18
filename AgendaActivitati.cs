@@ -7,8 +7,35 @@ using System.Threading.Tasks;
 
 namespace ProiectPAW
 {
+    #region DELEGATE
+    //Pas1.Definim o clasa de argumente pt solutii personalizate(drrivata din EventArgs)
+    public class AgendaEventArgs:EventArgs
+    {
+        public string Actiune {  get; set; } //ex: "ADAUGARE", "STERGERE"
+        public string NumeElement { get; set; } // ex: "Proiect C#"
+
+        public AgendaEventArgs(string actiune,string numeElement)
+        {
+            this.Actiune=actiune;
+            this.NumeElement=numeElement;
+        }
+    }
+    //Pas 2. Delegatul
+    public delegate void AgendaEventHandler(object sender, AgendaEventArgs e);
+    #endregion
     public class AgendaActivitati
     {
+        #region Eventul
+        public event AgendaEventHandler NotificareModificare;
+        //Pas4. Functia care activeaza delegatul
+        private void DeclanseazaNotificare(string actiune, string numeElement)
+        {
+            if(NotificareModificare != null)
+            {
+                NotificareModificare(this,new AgendaEventArgs(actiune,numeElement));
+            }
+        }
+        #endregion
         #region Colectii
         private List<Domeniu> domenii;
         private List<Activitate> activitati;
@@ -57,7 +84,7 @@ namespace ProiectPAW
                     throw new Exception($"Domeniul '{d.Titlu} exista deja.'");
             }
             this.domenii.Add(d);
-            //trigger event?
+            DeclanseazaNotificare("ADAUGARE", d.Titlu);
         }
         public void StergeDomeniu(int id)
         {
@@ -65,8 +92,9 @@ namespace ProiectPAW
             {
                 if (this.domenii[i].Id==id)
                 {
+                    string titluSters = this.domenii[i].Titlu;
                     this.domenii.RemoveAt(i);
-                    //trigger event?
+                    DeclanseazaNotificare("STERGERE", titluSters);
                     return;
                 }
             }
@@ -88,7 +116,7 @@ namespace ProiectPAW
         {
             if(a==null) throw new Exception("Activitate nu poate fi null");
             this.activitati.Add(a);
-            //trigger event?
+            DeclanseazaNotificare("ADAUGARE", a.Titlu);
         }
         public void StergeActivitate(int id)
         {
@@ -96,8 +124,9 @@ namespace ProiectPAW
             {
                 if (this.activitati[i].Id==id)
                 {
+                    string titluSters = this.activitati[i].Titlu;
                     this.activitati.RemoveAt(i);
-                    //trigger event?
+                    DeclanseazaNotificare("STERGERE", titluSters);
                     return;
                 }
             }
@@ -118,7 +147,7 @@ namespace ProiectPAW
             if(a!=null)
             {
                 a.MarcheazaFinalizata();
-                //?trigger event?
+                DeclanseazaNotificare("FINALIZARE", a.Titlu);
             }
         }
         #endregion
@@ -128,7 +157,7 @@ namespace ProiectPAW
         {
             if (p == null) throw new Exception("Proiectul nu poate fi null");
             this.proiecte.Add(p);
-            //trigger event?
+            DeclanseazaNotificare("ADAUGARE", p.Titlu);
         }
         public void StergeProiect(int id)
         {
@@ -136,9 +165,10 @@ namespace ProiectPAW
             {
                 if (this.proiecte[i].Id==id)
                 {
+                    string titluSters = this.proiecte[i].Titlu;
                     this.proiecte.RemoveAt(i);
-                    return; 
-                    //trigger event?
+                    DeclanseazaNotificare("STERGERE", titluSters);
+                    return;
                 }
             }
             throw new Exception($"Proiectul cu id {id} nu exista");
@@ -278,7 +308,7 @@ namespace ProiectPAW
                     sw.WriteLine(ids.ToString());
                 }
             }
-            //?trigger event?
+            DeclanseazaNotificare("SALVARE", caleFisier);
         }
 
         public void RestaureazaDinFisier(string caleFisier)
@@ -300,7 +330,7 @@ namespace ProiectPAW
                 linie = sr.ReadLine(); // #DOMENII:N
                 if (linie != null && linie.StartsWith("#DOMENII:"))
                 {
-                    int nrDomenii = int.Parse(linie.Substring(10));
+                    int nrDomenii = int.Parse(linie.Substring(9));
                     for (int i = 0; i < nrDomenii; i++)
                     {
                         linie = sr.ReadLine();
@@ -316,7 +346,7 @@ namespace ProiectPAW
                 linie = sr.ReadLine(); // #ACTIVITATI:N
                 if (linie != null && linie.StartsWith("#ACTIVITATI:"))
                 {
-                    int nrActivitati = int.Parse(linie.Substring(13));
+                    int nrActivitati = int.Parse(linie.Substring(12));
                     for (int i = 0; i < nrActivitati; i++)
                     {
                         linie = sr.ReadLine();
@@ -359,7 +389,7 @@ namespace ProiectPAW
                 linie = sr.ReadLine(); // #PROIECTE:N
                 if (linie != null && linie.StartsWith("#PROIECTE:"))
                 {
-                    int nrProiecte = int.Parse(linie.Substring(11));
+                    int nrProiecte = int.Parse(linie.Substring(10));
                     for (int i = 0; i < nrProiecte; i++)
                     {
                         linie = sr.ReadLine();
@@ -402,7 +432,7 @@ namespace ProiectPAW
                     }
                 }
             }
-            //?trigger event?
+            DeclanseazaNotificare("RESTAURARE", caleFisier);
         }
         #endregion
 
@@ -437,7 +467,7 @@ namespace ProiectPAW
         {
             string xml = ExportXML();
             File.WriteAllText(caleFisier, xml);
-            //?trigger event?
+            DeclanseazaNotificare("SALVARE_XML", caleFisier);
         }
         #endregion
         #region ToString

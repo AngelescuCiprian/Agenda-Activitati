@@ -72,13 +72,22 @@ namespace ProiectPAW
         //operator == pe baza titlului
         public static bool operator==(Domeniu d1, Domeniu d2)
         {
-            if(d1 is null || d2 is null) return false;
+            if (d1 is null && d2 is null) return true;
+            if (d1 is null || d2 is null) return false;
             return String.Equals(d1.Titlu, d2.Titlu);
         }
         public static bool operator !=(Domeniu d1, Domeniu d2)
         {
-            if (d1 is null || d2 is null) return false;
-            return !String.Equals(d1.Titlu, d2.Titlu);
+            return !(d1 == d2);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this == ((Domeniu)obj);
+        }
+        public override int GetHashCode()
+        {
+            return Titlu?.GetHashCode() ?? 0;
         }
         #endregion
 
