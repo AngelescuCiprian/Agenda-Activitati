@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Documentatie Proiect PAW – Agenda de Activitati</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --card: #1a1d27;
+      --border: #2e3248;
+      --accent: #7c6af7;
+      --accent2: #4fc3f7;
+      --accent3: #81c784;
+      --accent4: #ffb74d;
+      --accent5: #f06292;
+      --text: #e0e0e0;
+      --muted: #8891a5;
+      --code-bg: #12151f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      padding: 50px 20px 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 50px;
+    }
+    .header h1 {
+      font-size: 2.4rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .header p { color: var(--muted); font-size: 1.05rem; }
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 5px 4px;
+    }
+    .badge.green  { background: #388e3c; }
+    .badge.blue   { background: #1565c0; }
+    .badge.orange { background: #e65100; }
+
+    /* SECTIONS */
+    h2 {
+      font-size: 1.5rem;
+      color: var(--accent2);
+      border-left: 4px solid var(--accent2);
+      padding-left: 14px;
+      margin: 50px 0 20px;
+    }
+    h3 {
+      font-size: 1.15rem;
+      color: var(--accent4);
+      margin: 28px 0 10px;
+    }
+    p { margin-bottom: 10px; color: var(--text); }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 26px;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .card-title .tag {
+      font-size: 0.75rem;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-left: 8px;
+      font-weight: normal;
+      vertical-align: middle;
+    }
+    .tag-abstract  { background: #4a148c; color: #ce93d8; }
+    .tag-interface { background: #0d47a1; color: #90caf9; }
+    .tag-class     { background: #1b5e20; color: #a5d6a7; }
+    .tag-enum      { background: #e65100; color: #ffcc80; }
+
+    /* CODE BLOCKS */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 14px 0;
+      color: #cdd6f4;
+    }
+    .kw  { color: #cba6f7; } /* keyword  */
+    .ty  { color: #89dceb; } /* type     */
+    .cm  { color: #585b70; } /* comment  */
+    .st  { color: #a6e3a1; } /* string   */
+    .nm  { color: #fab387; } /* number   */
+    .op  { color: #89dceb; } /* operator */
+
+    /* DIAGRAM */
+    .diagram {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 30px;
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.83rem;
+      line-height: 1.9;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 20px 0;
+    }
+
+    /* GRID */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media(max-width:700px){ .grid-2 { grid-template-columns: 1fr; } }
+
+    /* RELATION TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #1e2235;
+      color: var(--accent2);
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:hover td { background: #1e2235; }
+
+    /* HIGHLIGHT BOX */
+    .info-box {
+      border-left: 4px solid var(--accent3);
+      background: #0d1f12;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+    }
+    .warn-box {
+      border-left: 4px solid var(--accent4);
+      background: #1f180d;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+    }
+
+    /* FLOW */
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+    }
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .flow-arrow { color: var(--accent); font-size: 1.2rem; }
+
+    /* LIST */
+    ul { padding-left: 22px; margin-bottom: 10px; }
+    li { margin-bottom: 5px; }
+    li::marker { color: var(--accent); }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 70px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Colors for diagram labels */
+    .c-purple { color: #cba6f7; }
+    .c-blue   { color: #89dceb; }
+    .c-green  { color: #a6e3a1; }
+    .c-orange { color: #fab387; }
+    .c-pink   { color: #f38ba8; }
+    .c-yellow { color: #f9e2af; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Agenda de Activitati</h1>
+    <p>Documentatie tehnica &mdash; Proiect PAW</p>
+    <br/>
+    <span class="badge">C# .NET 4.7.2</span>
+    <span class="badge green">OOP</span>
+    <span class="badge blue">Mostenire</span>
+    <span class="badge orange">Delegati &amp; Evenimente</span>
+  </div>
+
+  <!-- ===================== 1. DESCRIERE GENERALA ===================== -->
+  <h2>1. Ce face proiectul?</h2>
+  <p>
+    Proiectul implementeaza o <strong>agenda digitala de activitati</strong> —
+    un sistem care permite organizarea sarcinilor pe <em>domenii</em> (categorii),
+    gruparea lor in <em>proiecte</em> si gestionarea lor printr-o <em>agenda</em> centrala.
+  </p>
+  <div class="info-box">
+    <strong>Analogie:</strong> Gandeste-te la un planner fizic. Ai categorii colorate (Domenii),
+    sarcini individuale (Activitati) si dosare tematice (Proiecte). Agenda este plannerul in sine.
+  </div>
+
+  <!-- ===================== 2. IERARHIA CLASELOR ===================== -->
+  <h2>2. Ierarhia claselor</h2>
+
+  <div class="diagram">
+<span class="c-blue">«interface»</span>
+<span class="c-blue">IExportabil</span>
+  ├── ExportText() : string
+  └── ExportXML()  : string
+         │
+         │ implementeaza
+         ▼
+<span class="c-purple">«abstract»</span>
+<span class="c-purple">ElementAgenda</span>  ◄─── baza comuna pentru toate entitatile din agenda
+  ├── Id          (auto-generat, unic, static counter)
+  ├── Titlu
+  ├── Descriere
+  ├── DataCreare
+  ├── sumar()     <span class="c-pink">← abstract, OBLIGATORIU de implementat</span>
+  ├── ExportText()<span class="c-yellow"> ← virtual, poate fi suprascris</span>
+  └── ExportXML() <span class="c-yellow">← virtual, poate fi suprascris</span>
+         │
+         ├─────────────────┬──────────────────┐
+         ▼                 ▼                  ▼
+<span class="c-green">Domeniu</span>           <span class="c-green">Activitate</span>          <span class="c-green">Proiect</span>
++ Culoare         + Domeniu <span class="c-orange">──►</span>        + Domeniu <span class="c-orange">──►</span> Domeniu
++ ICloneable      + DataStart             + Activitate[] <span class="c-orange">──►</span> Activitate[]
++ IComparable     + DataEnd               + DeadLine
+                  + Prioritate (1-5)      + ICloneable
+                  + Status (enum)         + IComparable
+                  + Locatie               + Indexer [int] / [string]
+                  + ICloneable
+                  + IComparable
+
+<span class="c-yellow">AgendaActivitati</span>  ◄─── NU mosteneste ElementAgenda; este containerul principal
+  ├── List&lt;Domeniu&gt;
+  ├── List&lt;Activitate&gt;
+  ├── List&lt;Proiect&gt;
+  ├── event NotificareModificare  <span class="c-pink">← delegate + event pattern</span>
+  ├── Sortari, Filtrari, Statistici
+  └── SalveazaInFisier / SalveazaInFisierXML
+  </div>
+
+  <!-- ===================== 3. CLASELE IN DETALIU ===================== -->
+  <h2>3. Clasele in detaliu</h2>
+
+  <!-- IExportabil -->
+  <div class="card">
+    <div class="card-title">
+      IExportabil
+      <span class="tag tag-interface">interface</span>
+    </div>
+    <p>Contract minim pe care trebuie sa il respecte orice entitate exportabila din sistem.</p>
+    <pre><span class="kw">public interface</span> <span class="ty">IExportabil</span>
+{
+    <span class="ty">string</span> ExportText();   <span class="cm">// text lizibil pentru om</span>
+    <span class="ty">string</span> ExportXML();    <span class="cm">// format structurat pentru transfer de date</span>
+}</pre>
+  </div>
+
+  <!-- ElementAgenda -->
+  <div class="card">
+    <div class="card-title">
+      ElementAgenda
+      <span class="tag tag-abstract">abstract class</span>
+    </div>
+    <p>
+      Clasa de baza pentru <strong>Domeniu</strong>, <strong>Activitate</strong> si <strong>Proiect</strong>.
+      Contine tot ce au in comun aceste entitati. Nu poate fi instantiata direct.
+    </p>
+    <div class="warn-box">
+      <strong>Mecanism important — ID unic automat:</strong><br/>
+      <code>private static int contorID = 0;</code><br/>
+      La fiecare creare de obiect (inclusiv copii): <code>this.id = ++contorID</code><br/>
+      Contorul este <em>static</em> → e partajat de toate instantele, ID-urile sunt mereu unice si crescatoare.
+    </div>
+    <pre><span class="kw">public abstract class</span> <span class="ty">ElementAgenda</span> : <span class="ty">IExportabil</span>
+{
+    <span class="kw">private static int</span> contorID = <span class="nm">0</span>;  <span class="cm">// partajat de toate instantele</span>
+
+    <span class="kw">public</span> <span class="ty">int</span>      Id        { <span class="kw">get</span>; }          <span class="cm">// auto-generat</span>
+    <span class="kw">public</span> <span class="ty">string</span>   Titlu     { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="ty">string</span>   Descriere { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public</span> <span class="ty">DateTime</span> DataCreare { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    <span class="kw">public abstract string</span> sumar();          <span class="cm">// TREBUIE implementat de subclase</span>
+    <span class="kw">public virtual string</span>  ExportText() ...  <span class="cm">// POATE fi suprascris</span>
+    <span class="kw">public virtual string</span>  ExportXML()  ...
+}</pre>
+  </div>
+
+  <!-- Domeniu -->
+  <div class="card">
+    <div class="card-title">
+      Domeniu
+      <span class="tag tag-class">class</span>
+    </div>
+    <p>Reprezinta o <strong>categorie</strong> (ex: Facultate, Munca, Personal). Cel mai simplu element din ierarhie.</p>
+    <div class="grid-2">
+      <div>
+        <h3>Proprietati</h3>
+        <ul>
+          <li><strong>Culoare</strong> — culoarea categoriei (default "Gri")</li>
+          <li><strong>Titlu, Descriere, DataCreare</strong> — mostenite</li>
+        </ul>
+        <h3>Interfete implementate</h3>
+        <ul>
+          <li><strong>ICloneable</strong> — <code>Clone()</code> via <code>MemberwiseClone()</code></li>
+          <li><strong>IComparable</strong> — alfabetic dupa Titlu, la egalitate dupa DataCreare</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Operatori supraincarcati</h3>
+        <ul>
+          <li><code>&lt;</code> / <code>&gt;</code> — ordine alfabetica (via CompareTo)</li>
+          <li><code>==</code> / <code>!=</code> — egalitate <em>dupa Titlu</em>, nu dupa referinta</li>
+        </ul>
+        <div class="info-box">
+          <code>facultate == copie</code> → <strong>true</strong><br/>
+          chiar daca sunt obiecte diferite in memorie, titlul e acelasi.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activitate -->
+  <div class="card">
+    <div class="card-title">
+      Activitate
+      <span class="tag tag-class">class</span>
+    </div>
+    <p>Elementul central al aplicatiei. O sarcina concreta, cu interval de timp si prioritate.</p>
+
+    <h3>StatusActivitate — enum</h3>
+    <pre><span class="kw">public enum</span> <span class="ty">StatusActivitate</span>
+{
+    Noua,        <span class="cm">// stare initiala la creare</span>
+    InProgres,   <span class="cm">// dupa IncepeActivitatea()</span>
+    Finalizata,  <span class="cm">// dupa MarcheazaFinalizata()</span>
+    Anulata
+}</pre>
+
+    <div class="grid-2">
+      <div>
+        <h3>Campuri proprii</h3>
+        <ul>
+          <li><strong>Domeniu</strong> — referinta la un obiect Domeniu (asociere)</li>
+          <li><strong>DataStart / DataEnd</strong> — intervalul activitatii</li>
+          <li><strong>Prioritate</strong> — 1 (minima) la 5 (maxima), auto-clampata</li>
+          <li><strong>Status</strong> — din enum-ul de mai sus</li>
+          <li><strong>Locatie</strong> — optional, default ""</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Operatori supraincarcati</h3>
+        <ul>
+          <li><code>a1 &gt; a2</code> — a1 are prioritate mai mare</li>
+          <li><code>a1 &lt; a2</code> — a1 are prioritate mai mica</li>
+          <li><code>a++</code> — creste prioritatea cu 1 (max 5)</li>
+          <li><code>a--</code> — scade prioritatea cu 1 (min 1)</li>
+          <li><code>(string)a</code> — cast explicit → returneaza sumar()</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Metode importante</h3>
+    <table>
+      <tr><th>Metoda</th><th>Ce face</th></tr>
+      <tr><td><code>esteInTermen()</code></td><td>Returneaza true daca DataEnd >= acum</td></tr>
+      <tr><td><code>DurataEstimata()</code></td><td>DataEnd - DataStart ca TimeSpan</td></tr>
+      <tr><td><code>EsteUrgenta()</code></td><td>True daca mai sunt &lt;= 2 zile si nu e finalizata/anulata</td></tr>
+      <tr><td><code>MarcheazaFinalizata()</code></td><td>Seteaza Status = Finalizata</td></tr>
+      <tr><td><code>IncepeActivitatea()</code></td><td>Noua → InProgres</td></tr>
+    </table>
+
+    <h3>IComparable — logica de sortare</h3>
+    <pre><span class="cm">// Compara intai dupa DataStart (crescator),</span>
+<span class="cm">// la egalitate: prioritate mai mare vine PRIMA (descrescator)</span>
+<span class="kw">public int</span> CompareTo(<span class="ty">object</span> obj)
+{
+    <span class="ty">Activitate</span> a = (<span class="ty">Activitate</span>)obj;
+    <span class="kw">int</span> cmp = <span class="kw">this</span>.dataStart.CompareTo(a.DataStart);
+    <span class="kw">if</span> (cmp != <span class="nm">0</span>) <span class="kw">return</span> cmp;
+    <span class="kw">return</span> a.Prioritate.CompareTo(<span class="kw">this</span>.prioritate); <span class="cm">// inversat!</span>
+}</pre>
+  </div>
+
+  <!-- Proiect -->
+  <div class="card">
+    <div class="card-title">
+      Proiect
+      <span class="tag tag-class">class</span>
+    </div>
+    <p>Un <strong>grup de activitati</strong> cu un deadline comun. Foloseste un <em>array manual</em> (nu List).</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>Campuri proprii</h3>
+        <ul>
+          <li><strong>activitati[]</strong> — array de Activitate, redimensionat manual la adaugare</li>
+          <li><strong>count</strong> — numarul real de activitati</li>
+          <li><strong>Domeniu</strong> — categoria proiectului</li>
+          <li><strong>DeadLine</strong> — data limita a proiectului</li>
+        </ul>
+        <div class="warn-box">
+          <code>CAPACITATE_INITIALA = 10</code><br/>
+          La fiecare <code>AdaugaActivitate()</code>, array-ul e copiat intr-unul mai mare (+1).
+          Acesta este un array dinamic implementat manual — echivalentul unui List simplist.
+        </div>
+      </div>
+      <div>
+        <h3>Indexer dublu</h3>
+        <pre><span class="cm">// acces prin pozitie</span>
+proiect[<span class="nm">0</span>]
+
+<span class="cm">// acces prin titlu</span>
+proiect[<span class="st">"Examen BD"</span>]</pre>
+
+        <h3>Operatori</h3>
+        <pre><span class="cm">// adauga activitate</span>
+proiect = proiect + activitate;
+
+<span class="cm">// elimina dupa obiect</span>
+proiect = proiect - activitate;
+
+<span class="cm">// elimina dupa id</span>
+proiect = proiect - idActivitate;</pre>
+      </div>
+    </div>
+
+    <h3>ProcentFinalizare — calculat dinamic</h3>
+    <pre><span class="kw">public float</span> ProcentFinalizare
+{
+    <span class="kw">get</span> { <span class="kw">return</span> CalculeazaProcentFinalizare(); }  <span class="cm">// recalculat la fiecare acces</span>
+}
+<span class="cm">// (nr activitati Finalizate / total) * 100</span></pre>
+  </div>
+
+  <!-- AgendaActivitati -->
+  <div class="card">
+    <div class="card-title">
+      AgendaActivitati
+      <span class="tag tag-class">class</span>
+    </div>
+    <p>
+      Containerul principal al aplicatiei. Gestioneaza toate cele trei colectii
+      si implementeaza pattern-ul <strong>Delegate + Event</strong> pentru notificari.
+    </p>
+
+    <h3>Pattern Delegate + Event — pas cu pas</h3>
+    <pre><span class="cm">// Pas 1: clasa de argumente personalizate</span>
+<span class="kw">public class</span> <span class="ty">AgendaEventArgs</span> : <span class="ty">EventArgs</span>
+{
+    <span class="kw">public string</span> Actiune     { <span class="kw">get</span>; <span class="kw">set</span>; }  <span class="cm">// "ADAUGARE", "STERGERE", "SALVARE"</span>
+    <span class="kw">public string</span> NumeElement { <span class="kw">get</span>; <span class="kw">set</span>; }  <span class="cm">// ex: "Proiect C#"</span>
+}
+
+<span class="cm">// Pas 2: delegatul (semnatura metodei-handler)</span>
+<span class="kw">public delegate void</span> <span class="ty">AgendaEventHandler</span>(<span class="kw">object</span> sender, <span class="ty">AgendaEventArgs</span> e);
+
+<span class="cm">// Pas 3: eventul (in clasa AgendaActivitati)</span>
+<span class="kw">public event</span> <span class="ty">AgendaEventHandler</span> NotificareModificare;
+
+<span class="cm">// Pas 4: metoda care declanseaza notificarea</span>
+<span class="kw">private void</span> DeclanseazaNotificare(<span class="ty">string</span> actiune, <span class="ty">string</span> numeElement)
+{
+    <span class="kw">if</span> (NotificareModificare != <span class="kw">null</span>)
+        NotificareModificare(<span class="kw">this</span>, <span class="kw">new</span> <span class="ty">AgendaEventArgs</span>(actiune, numeElement));
+}
+
+<span class="cm">// In Program.cs — abonare la event:</span>
+agenda.NotificareModificare += <span class="kw">new</span> <span class="ty">AgendaEventHandler</span>(CandSeModificaAgenda);
+
+<span class="cm">// Handler-ul (metoda care se executa la notificare):</span>
+<span class="kw">static void</span> CandSeModificaAgenda(<span class="kw">object</span> sender, <span class="ty">AgendaEventArgs</span> e)
+{
+    Console.WriteLine(<span class="st">$"  >> NOTIFICARE [{e.Actiune}]: {e.NumeElement}"</span>);
+}</pre>
+
+    <div class="info-box">
+      <strong>Cand se declanseaza evenimentul?</strong><br/>
+      La orice <code>AdaugaDomeniu</code>, <code>StergeActivitate</code>, <code>MarcheazaFinalizata</code>,
+      <code>SalveazaInFisier</code>, <code>SalveazaInFisierXML</code> etc.
+      — orice operatie care modifica starea agendei.
+    </div>
+
+    <h3>Functionalitati oferite</h3>
+    <table>
+      <tr><th>Categorie</th><th>Metode</th></tr>
+      <tr><td>Gestionare Domenii</td><td>AdaugaDomeniu, StergeDomeniu, GasesteDomeniu</td></tr>
+      <tr><td>Gestionare Activitati</td><td>AdaugaActivitate, StergeActivitate, MarcheazaFinalizata</td></tr>
+      <tr><td>Gestionare Proiecte</td><td>AdaugaProiect, StergeProiect</td></tr>
+      <tr><td>Sortari</td><td>SorteazaActivitateDupaData, SorteazaActivitateDupaPrioritate, SorteazaDomeniiAlfabetic, SorteazaProiectDupaDeadline</td></tr>
+      <tr><td>Filtrari</td><td>FiltreazaDupaDomeniu, FiltreazaDupaStatus, FiltreazaDupaInterval</td></tr>
+      <tr><td>Statistici</td><td>StatisticiPerDomeniu → Dictionary&lt;string,int&gt;, StatisticiPerStatus → Dictionary&lt;StatusActivitate,int&gt;</td></tr>
+      <tr><td>Persistenta</td><td>SalveazaInFisier (txt), RestaureazaDinFisier, SalveazaInFisierXML</td></tr>
+    </table>
+  </div>
+
+  <!-- ===================== 4. RELATII DINTRE CLASE ===================== -->
+  <h2>4. Relatiile dintre clase</h2>
+
+  <div class="diagram">
+┌─────────────────────────────────────────────────────────────────────────┐
+│                        AgendaActivitati                                  │
+│                                                                          │
+│  List&lt;Domeniu&gt; domenii  ──────────────────────────────────┐             │
+│  List&lt;Activitate&gt; activitati  ──────────────────────────┐  │             │
+│  List&lt;Proiect&gt; proiecte  ─────────────────────────────┐ │  │             │
+│  event NotificareModificare                            │ │  │             │
+└────────────────────────────────────────────────────────┼─┼──┼─────────────┘
+                                                         │ │  │
+         ┌───────────────────────────────────────────────┘ │  │
+         │              ┌────────────────────────────────────┘  │
+         │              │                      ┌─────────────────┘
+         ▼              ▼                      ▼
+    ┌─────────┐   ┌───────────────┐   ┌──────────────────┐
+    │ Proiect │   │  Activitate   │   │     Domeniu      │
+    │         │   │               │   │                  │
+    │ Domeniu ├──►│   Domeniu  ───┼──►│ Titlu            │
+    │ ──────► │   │   DataStart   │   │ Descriere        │
+    │ Domeniu │   │   DataEnd     │   │ Culoare          │
+    │         │   │   Prioritate  │   │ DataCreare       │
+    │ activ[] │   │   Status      │   │                  │
+    │ ──────► │   │   Locatie     │   └──────────────────┘
+    │ activ[] ├──►│               │
+    │ activ[] │   └───────────────┘
+    └─────────┘
+
+  LEGENDA RELATII:
+  ──►  Asociere (un obiect contine referinta la alt obiect)
+       Activitate "cunoaste" Domeniu sau, dar nu il detine exclusiv —
+       acelasi Domeniu poate fi folosit de mai multe Activitati si Proiecte.
+
+  Proiect contine Activitate[] — agregare: activitatile pot exista independent.
+  </div>
+
+  <h3>Tipul relatiei: Asociere (nu Compozitie)</h3>
+  <div class="warn-box">
+    <strong>Important:</strong> Acelasi obiect <code>facultate</code> (Domeniu) este folosit
+    simultan de <code>a1</code>, <code>a2</code> si <code>proiectFacultate</code>.
+    Daca modifici <code>facultate.Culoare</code>, schimbarea se vede peste tot — sunt referinte la
+    <em>acelasi</em> obiect in memorie.
+  </div>
+
+  <!-- ===================== 5. FLUXUL DIN MAIN ===================== -->
+  <h2>5. Fluxul din Program.cs (Main)</h2>
+
+  <div class="flow">
+    <div class="flow-step">1. Creezi<br/><strong>Domenii</strong></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">2. Creezi<br/><strong>Activitati</strong><br/>(cu Domeniu)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">3. Creezi<br/><strong>Proiect</strong><br/>+ adaugi Activitati</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">4. Creezi<br/><strong>AgendaActivitati</strong><br/>+ abonare event</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">5. Adaugi totul<br/>in <strong>Agenda</strong></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">6. Sortari,<br/>Filtrari,<br/>Statistici</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">7. Salvezi<br/><strong>.txt</strong><br/><strong>.xml</strong></div>
+  </div>
+
+  <!-- ===================== 6. CONCEPTE OOP UTILIZATE ===================== -->
+  <h2>6. Concepte OOP demonstrate</h2>
+
+  <table>
+    <tr><th>Concept</th><th>Unde apare</th><th>Detaliu</th></tr>
+    <tr>
+      <td><strong>Mostenire</strong></td>
+      <td>Domeniu, Activitate, Proiect : ElementAgenda</td>
+      <td>Reutilizeaza Id, Titlu, Descriere, DataCreare; fiecare adauga specific propriu</td>
+    </tr>
+    <tr>
+      <td><strong>Clasa abstracta</strong></td>
+      <td>ElementAgenda</td>
+      <td>Nu poate fi instantiata; metoda <code>sumar()</code> trebuie implementata de subclase</td>
+    </tr>
+    <tr>
+      <td><strong>Interfata</strong></td>
+      <td>IExportabil</td>
+      <td>Contract: ExportText() si ExportXML() trebuie prezente</td>
+    </tr>
+    <tr>
+      <td><strong>Polimorfism</strong></td>
+      <td>ExportText(), ExportXML(), sumar(), ToString()</td>
+      <td>Fiecare clasa are propria implementare — comportament diferit, acelasi apel</td>
+    </tr>
+    <tr>
+      <td><strong>Incapsulare</strong></td>
+      <td>Toate campurile private + proprietati publice</td>
+      <td>Prioritate auto-clamped la 1-5; DataEnd validata sa fie dupa DataStart</td>
+    </tr>
+    <tr>
+      <td><strong>Supraincarcarea operatorilor</strong></td>
+      <td>Domeniu: ==, !=, &lt;, &gt;<br/>Activitate: &lt;, &gt;, ++, --, (string)<br/>Proiect: +, -, &lt;, &gt;</td>
+      <td>Permite sintaxa naturala: <code>proiect + activitate</code>, <code>a1 &gt; a2</code></td>
+    </tr>
+    <tr>
+      <td><strong>ICloneable</strong></td>
+      <td>Domeniu, Activitate, Proiect</td>
+      <td>Copie profunda (deep copy) — obiectul clonat e complet independent</td>
+    </tr>
+    <tr>
+      <td><strong>IComparable</strong></td>
+      <td>Domeniu (alfabetic), Activitate (data+prioritate), Proiect (deadline)</td>
+      <td>Permite sortarea cu List.Sort()</td>
+    </tr>
+    <tr>
+      <td><strong>Indexer</strong></td>
+      <td>Proiect</td>
+      <td>Acces prin <code>[int]</code> (pozitie) sau <code>[string]</code> (titlu)</td>
+    </tr>
+    <tr>
+      <td><strong>Delegati si Evenimente</strong></td>
+      <td>AgendaActivitati</td>
+      <td>Pattern Observer — notifica abonatii la orice modificare a agendei</td>
+    </tr>
+    <tr>
+      <td><strong>Enum</strong></td>
+      <td>StatusActivitate</td>
+      <td>Valori discrete cu nume sugestiv in loc de int-uri magice</td>
+    </tr>
+    <tr>
+      <td><strong>Static</strong></td>
+      <td>ElementAgenda.contorID</td>
+      <td>Partajat de toate instantele → ID-uri unice globale</td>
+    </tr>
+    <tr>
+      <td><strong>Constructor de copiere</strong></td>
+      <td>ElementAgenda, Domeniu, Activitate</td>
+      <td>Creeaza o copie independenta a obiectului, cu ID nou</td>
+    </tr>
+    <tr>
+      <td><strong>Generics (List, Dictionary)</strong></td>
+      <td>AgendaActivitati</td>
+      <td>Colectii tipizate pentru siguranta la compile-time</td>
+    </tr>
+    <tr>
+      <td><strong>Persistenta fisier</strong></td>
+      <td>AgendaActivitati</td>
+      <td>StreamWriter/StreamReader (txt), File.WriteAllText (xml); cale relativa → bin\Debug\</td>
+    </tr>
+  </table>
+
+  <!-- ===================== 7. HARTA FISIERELOR ===================== -->
+  <h2>7. Harta fisierelor proiectului</h2>
+
+  <div class="diagram">
+ProiectPAW/
+├── IExportabil.cs       → interfata cu ExportText() si ExportXML()
+├── ElementAgenda.cs     → clasa abstracta de baza (Id, Titlu, Descriere, sumar())
+├── Domeniu.cs           → categorie (Culoare, IComparable alfabetic, op ==)
+├── Activitate.cs        → sarcina (Prioritate, Status, DataStart/End, op ++/--)
+│                           + enum StatusActivitate
+├── Proiect.cs           → grup de activitati (array manual, indexer, op +/-)
+├── AgendaActivitati.cs  → container principal + delegate/event + persistenta
+└── Program.cs           → testare completa a tuturor claselor si functiilor
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Generat automat · Proiect PAW · C# .NET Framework 4.7.2
+  </div>
+
+</div>
+</body>
+</html>

@@ -12,3 +12,5 @@ C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.Assemb
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.CoreCompileInputs.cache
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.exe
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.pdb
+C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.Form1.resources
+C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.csproj.GenerateResource.cache

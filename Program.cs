@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProiectPAW
 {
-    class Program
+    static class Program
     {
-        // Metoda EXTERNA clasei AgendaActivitati care se aboneaza la event
-        // Are aceeasi semnatura ca delegate-ul: void(object sender, AgendaEventArgs e)
-        static void CandSeModificaAgenda(object sender,AgendaEventArgs e)
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+
+        // Cod vechi consola - pastrat ca referinta
+        static void CandSeModificaAgenda(object sender, AgendaEventArgs e)
         {
             Console.WriteLine($"  >> NOTIFICARE [{e.Actiune}]: {e.NumeElement}");
         }
-        static void Main(string[] args)
+        static void MainConsola()
         {
             Console.WriteLine("=== AGENDA DE ACTIVITATI - Test Clase ===\n");
             #region Testare Domenii
