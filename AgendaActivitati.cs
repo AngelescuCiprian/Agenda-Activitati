@@ -81,7 +81,7 @@ namespace ProiectPAW
             foreach(Domeniu existent in domenii)
             {
                 if (existent == d)//operatorul== supraincarcat
-                    throw new Exception($"Domeniul '{d.Titlu} exista deja.'");
+                    throw new Exception($"Domeniul '{d.Titlu}' exista deja.");
             }
             this.domenii.Add(d);
             DeclanseazaNotificare("ADAUGARE", d.Titlu);

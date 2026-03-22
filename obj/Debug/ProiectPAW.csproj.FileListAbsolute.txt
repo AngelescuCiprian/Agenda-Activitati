@@ -14,3 +14,7 @@ C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.exe
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.pdb
 C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.Form1.resources
 C:\Users\Asus\source\repos\PAW\ProiectPAW\ProiectPAW\obj\Debug\ProiectPAW.csproj.GenerateResource.cache
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.Form1.resources
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.GenerateResource.cache
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.FormActivitate.resources
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.FormDomeniu.resources

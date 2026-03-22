@@ -83,7 +83,8 @@ namespace ProiectPAW
 
         public override bool Equals(object obj)
         {
-            return this == ((Domeniu)obj);
+            if (obj == null || !(obj is Domeniu)) return false;
+            return this == (Domeniu)obj;
         }
         public override int GetHashCode()
         {

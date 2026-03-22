@@ -40,7 +40,7 @@ namespace ProiectPAW
             set
             {
                 if (value < dataStart)
-                    throw new Exception("Data de sfarsit nu poate fi inaintea datei de start.\" ");
+                    throw new Exception("Data de sfarsit nu poate fi inaintea datei de start.");
                 this.dataEnd = value;
             }
         }
@@ -83,7 +83,7 @@ namespace ProiectPAW
             this.domeniu = domeniu ?? throw new Exception("Domeniul neprecizat!");
             this.dataStart = dataStart;
             if (dataEnd < this.dataStart)
-                throw new Exception("Data de sfarsit trebuie sa fie inaintea datei de inceput!");
+                throw new Exception("Data de sfarsit nu poate fi inaintea datei de inceput!");
             this.dataEnd = dataEnd;
             this.prioritate = prioritate;
             this.status = StatusActivitate.Noua;

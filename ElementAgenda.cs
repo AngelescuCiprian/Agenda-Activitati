@@ -28,7 +28,7 @@ namespace ProiectPAW
                 titlu = value;
             }
         }
-        public string Descriere { get => descriere; set => descriere = value ?? " "; }
+        public string Descriere { get => descriere; set => descriere = value ?? ""; }
         public DateTime DataCreare { get => dataCreare; set => dataCreare = value; }
 
         //Constructor implicit
