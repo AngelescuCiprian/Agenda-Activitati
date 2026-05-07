@@ -18,3 +18,4 @@ C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.Form1.resourc
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.csproj.GenerateResource.cache
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.FormActivitate.resources
 C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.FormDomeniu.resources
+C:\Users\angci\source\repos\Agenda-Activitati\obj\Debug\ProiectPAW.FormGrafic.resources

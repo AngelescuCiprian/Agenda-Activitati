@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace ProiectPAW
 {
@@ -474,5 +475,109 @@ namespace ProiectPAW
             RefreshListView();
         }
 
+        private void graficeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormGrafic form = new FormGrafic(agenda);
+            form.ShowDialog();
+        }
+
+        private void tsmiPrevizualizare_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd=new PrintDocument();
+            pd.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+            PrintPreviewDialog dlg = new PrintPreviewDialog();
+            dlg.Document = pd;
+            dlg.ShowDialog();
+        }
+        // Desenarea continutului pe pagina de print
+        private void pd_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics gr = e.Graphics;
+            int y = 40; // pozitia curenta pe verticala
+
+            // Fonturi
+            Font fontTitlu = new Font("Segoe UI", 16, FontStyle.Bold);
+            Font fontSubtitlu = new Font("Segoe UI", 10, FontStyle.Italic);
+            Font fontHeader = new Font("Segoe UI", 9, FontStyle.Bold);
+            Font fontRand = new Font("Segoe UI", 9);
+
+            // Titlu raport
+            gr.DrawString("Agenda de Activitati - Raport", fontTitlu, Brushes.Black, 40, y);
+            y += 35;
+            gr.DrawString($"Data generarii: {DateTime.Now:dd.MM.yyyy HH:mm}", fontSubtitlu, Brushes.Gray, 40, y);
+            y += 25;
+            gr.DrawString($"Total activitati: {agenda.TotalActivitati} | Domenii: {agenda.Domenii.Count}",
+                fontSubtitlu, Brushes.Gray, 40, y);
+            y += 30;
+
+            // Linie separator
+            gr.DrawLine(new Pen(Color.DarkGray, 2), 40, y, 760, y);
+            y += 15;
+
+            // Header tabel
+            gr.DrawString("Titlu", fontHeader, Brushes.Black, 40, y);
+            gr.DrawString("Domeniu", fontHeader, Brushes.Black, 230, y);
+            gr.DrawString("Data start", fontHeader, Brushes.Black, 370, y);
+            gr.DrawString("Data sfarsit", fontHeader, Brushes.Black, 480, y);
+            gr.DrawString("P", fontHeader, Brushes.Black, 590, y);
+            gr.DrawString("Status", fontHeader, Brushes.Black, 620, y);
+            y += 20;
+            gr.DrawLine(Pens.Gray, 40, y, 760, y);
+            y += 5;
+
+            // Randuri activitati
+            foreach (Activitate a in agenda.Activitati)
+            {
+                // Daca depasim pagina, oprim
+                if (y > e.PageBounds.Height - 60)
+                {
+                    gr.DrawString("...", fontRand, Brushes.Gray, 40, y);
+                    break;
+                }
+
+                string titluScurt = a.Titlu.Length > 25 ? a.Titlu.Substring(0, 25) + ".." : a.Titlu;
+                gr.DrawString(titluScurt, fontRand, Brushes.Black, 40, y);
+                gr.DrawString(a.Domeniu.Titlu, fontRand, Brushes.Black, 230, y);
+                gr.DrawString(a.DataStart.ToString("dd.MM.yyyy"), fontRand, Brushes.Black, 370, y);
+                gr.DrawString(a.DataEnd.ToString("dd.MM.yyyy"), fontRand, Brushes.Black, 480, y);
+                gr.DrawString(a.Prioritate.ToString(), fontRand, Brushes.Black, 590, y);
+                gr.DrawString(a.Status.ToString(), fontRand, Brushes.Black, 620, y);
+                y += 20;
+            }
+
+            // Linie finala
+            y += 10;
+            gr.DrawLine(new Pen(Color.DarkGray, 2), 40, y, 760, y);
+        }
+        // Cand incepem sa tragem din ListView
+        private void lvActivitati_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            lvActivitati.DoDragDrop(e.Item, DragDropEffects.Copy);
+        }
+        // Cand intram cu drag-ul deasupra ListBox-ului
+        private void lbFinalizare_DragEnter(object sender, DragEventArgs e)
+        {
+            if(e.Data.GetDataPresent(typeof(ListViewItem)))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect= DragDropEffects.None;
+        }
+
+        // Cand dam drumul (drop) in ListBox
+        private void lbFinalizare_DragDrop(object sender, DragEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+            if (item != null)
+            {
+                int id = (int)item.Tag;
+                Activitate a = agenda.GasesteActivitate(id);
+                if (a != null && a.Status != StatusActivitate.Finalizata)
+                {
+                    agenda.MarcheazaFinalizata(a.Id);
+                    lbFinalizate.Items.Add($"{a.Titlu} - finalizata la {DateTime.Now:HH:mm}");
+                    RefreshListView();
+                }
+            }
+        }
     }
 }

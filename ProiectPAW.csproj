@@ -67,6 +67,12 @@
     <Compile Include="FormDomeniu.Designer.cs">
       <DependentUpon>FormDomeniu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGrafic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGrafic.Designer.cs">
+      <DependentUpon>FormGrafic.cs</DependentUpon>
+    </Compile>
     <Compile Include="IExportabil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Proiect.cs" />
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDomeniu.resx">
       <DependentUpon>FormDomeniu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGrafic.resx">
+      <DependentUpon>FormGrafic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

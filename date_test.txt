@@ -1,0 +1,32 @@
+#DOMENII:5
+1|Facultate|Albastru|Cursuri si laboratoare universitare
+2|Munca|Rosu|Activitati si sarcini profesionale
+3|Personal|Verde|Activitati personale si hobby-uri
+4|Sport|Portocaliu|Activitati sportive si mentinere sanatate
+5|Familie|Galben|Timp petrecut cu familia si cei dragi
+#ACTIVITATI:18
+1|Proiect PAW|Facultate|2026-04-01|2026-05-15|5|InProgres|Acasa|Realizare proiect semestrial la materia PAW
+2|Examen Retele de Calculatoare|Facultate|2026-05-20|2026-06-15|5|Noua|Facultate|Pregatire pentru examenul final de retele
+3|Laborator Baze de Date|Facultate|2026-05-01|2026-05-13|4|InProgres|Laborator|Rezolvare tema de laborator BD semestrul 2
+4|Referat Matematica Discreta|Facultate|2026-04-10|2026-04-25|3|Finalizata|Acasa|Scriere referat pentru cursul de matematica discreta
+5|Prezentare proiect semestru|Facultate|2026-06-01|2026-06-05|5|Noua|Sala de curs|Prezentare finala proiect semestrial in fata comisiei
+6|Raport activitate trimestrul 1|Munca|2026-04-01|2026-04-30|4|Finalizata|Birou|Raport complet de activitate pentru Q1 2026
+7|Sedinta saptamanala echipa|Munca|2026-05-08|2026-05-08|3|Noua|Online|Meeting saptamanal cu echipa de proiect pe Teams
+8|Documentatie API intern|Munca|2026-05-01|2026-05-25|4|InProgres|Birou|Scriere documentatie tehnica completa pentru noul API REST
+9|Training obligatoriu securitate IT|Munca|2026-05-15|2026-05-16|2|Noua|Online|Curs obligatoriu de securitate informatica pentru angajati
+10|Code review modul autentificare|Munca|2026-05-09|2026-05-12|3|Anulata|Birou|Revizuire cod pentru modulul de autentificare (inlocuit cu PR automat)
+11|Citit Clean Code|Personal|2026-05-01|2026-05-31|2|InProgres|Acasa|Lectura cartii Clean Code de Robert C. Martin
+12|Curs avansat Python|Personal|2026-04-01|2026-06-30|3|InProgres|Acasa|Curs Python nivel avansat pe platforma Udemy
+13|Organizat spatiu de lucru|Personal|2026-04-20|2026-04-20|1|Finalizata|Acasa|Curatenie si reorganizare birou acasa dupa mutare
+14|Alergare zilnica 5km|Sport|2026-05-01|2026-05-31|2|InProgres|Parc|Program de alergare zilnica in parcul din apropiere
+15|Antrenament sala fitness|Sport|2026-05-01|2026-06-30|3|InProgres|Sala fitness|Antrenamente de 3 ori pe saptamana la sala de fitness
+16|Aniversare mama|Familie|2026-05-20|2026-05-20|5|Noua|Acasa|Organizare petrecere surpriza pentru aniversarea de 50 ani a mamei
+17|Vacanta de vara la munte|Familie|2026-07-01|2026-07-14|4|Noua|Munte|Planificare si rezervari pentru vacanta de vara cu familia
+18|Cumparaturi componente PC|Personal|2026-05-05|2026-05-05|2|Anulata|Online|Achizitie placa video noua (anulat - buget insuficient)
+#PROIECTE:3
+101|Proiect Semestrial PAW|Facultate|2026-05-15|3|Proiect principal al semestrului 2 - aplicatie WinForms
+1,3,5
+102|Eficienta profesionala|Munca|2026-05-31|2|Imbunatatire productivitate si comunicare in echipa tehnica
+7,8
+103|Sanatate activa|Sport|2026-06-30|2|Program de mentinere a sanatatii si conditiei fizice pe termen lung
+14,15

@@ -73,8 +73,14 @@
             this.btnSalveaza = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.StatusStrip();
             this.tsslInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.vizualizareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graficeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPrevizualizare = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbZonaFinalizare = new System.Windows.Forms.Label();
+            this.lbFinalizate = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.contextMenuActivitati.SuspendLayout();
+            this.lblStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,11 +90,12 @@
             this.fisierToolStripMenuItem,
             this.activitatiToolStripMenuItem,
             this.domeniiToolStripMenuItem,
-            this.despreToolStripMenuItem});
+            this.despreToolStripMenuItem,
+            this.vizualizareToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(588, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(885, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,8 +105,9 @@
             this.tsmiSalveaza,
             this.tsmiIncarca,
             this.tsmiExportXML,
-            this.toolStripMenuItem1,
-            this.tsmiIesire});
+            this.tsmiPrevizualizare,
+            this.tsmiIesire,
+            this.toolStripMenuItem1});
             this.fisierToolStripMenuItem.Name = "fisierToolStripMenuItem";
             this.fisierToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.fisierToolStripMenuItem.Text = "&Fisier";
@@ -108,7 +116,7 @@
             // 
             this.tsmiSalveaza.Name = "tsmiSalveaza";
             this.tsmiSalveaza.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmiSalveaza.Size = new System.Drawing.Size(158, 22);
+            this.tsmiSalveaza.Size = new System.Drawing.Size(203, 22);
             this.tsmiSalveaza.Text = "&Salveaza";
             this.tsmiSalveaza.Click += new System.EventHandler(this.salveazaToolStripMenuItem_Click);
             // 
@@ -116,26 +124,26 @@
             // 
             this.tsmiIncarca.Name = "tsmiIncarca";
             this.tsmiIncarca.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tsmiIncarca.Size = new System.Drawing.Size(180, 22);
+            this.tsmiIncarca.Size = new System.Drawing.Size(203, 22);
             this.tsmiIncarca.Text = "&Incarca";
             this.tsmiIncarca.Click += new System.EventHandler(this.tsmiIncarca_Click);
             // 
             // tsmiExportXML
             // 
             this.tsmiExportXML.Name = "tsmiExportXML";
-            this.tsmiExportXML.Size = new System.Drawing.Size(180, 22);
+            this.tsmiExportXML.Size = new System.Drawing.Size(203, 22);
             this.tsmiExportXML.Text = "Exporta &XML";
             this.tsmiExportXML.Click += new System.EventHandler(this.tsmiExportXML_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(155, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 6);
             // 
             // tsmiIesire
             // 
             this.tsmiIesire.Name = "tsmiIesire";
-            this.tsmiIesire.Size = new System.Drawing.Size(180, 22);
+            this.tsmiIesire.Size = new System.Drawing.Size(203, 22);
             this.tsmiIesire.Text = "I&esire";
             this.tsmiIesire.Click += new System.EventHandler(this.tsmiIesire_Click);
             // 
@@ -204,14 +212,14 @@
             // tsmiAdaugaDomeniu
             // 
             this.tsmiAdaugaDomeniu.Name = "tsmiAdaugaDomeniu";
-            this.tsmiAdaugaDomeniu.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAdaugaDomeniu.Size = new System.Drawing.Size(166, 22);
             this.tsmiAdaugaDomeniu.Text = "Adauga &domeniu";
             this.tsmiAdaugaDomeniu.Click += new System.EventHandler(this.tsmiAdaugaDomeniu_Click);
             // 
             // tsmiVizualizeazaDomenii
             // 
             this.tsmiVizualizeazaDomenii.Name = "tsmiVizualizeazaDomenii";
-            this.tsmiVizualizeazaDomenii.Size = new System.Drawing.Size(180, 22);
+            this.tsmiVizualizeazaDomenii.Size = new System.Drawing.Size(166, 22);
             this.tsmiVizualizeazaDomenii.Text = "&Vizualizeaza";
             this.tsmiVizualizeazaDomenii.Click += new System.EventHandler(this.tsmiVizualizeazaDomenii_Click);
             // 
@@ -226,7 +234,7 @@
             // tsmiDespre
             // 
             this.tsmiDespre.Name = "tsmiDespre";
-            this.tsmiDespre.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDespre.Size = new System.Drawing.Size(157, 22);
             this.tsmiDespre.Text = "Despre &aplicatie";
             this.tsmiDespre.Click += new System.EventHandler(this.tsmiDespre_Click);
             // 
@@ -244,8 +252,11 @@
             // 
             this.cbFiltruDomeniu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFiltruDomeniu.FormattingEnabled = true;
+            this.cbFiltruDomeniu.Items.AddRange(new object[] {
+            "Distributie activitati pe domenii (Pie)",
+            "Activitati pe nivel de prioritate (Bar)"});
             this.cbFiltruDomeniu.Location = new System.Drawing.Point(100, 28);
-            this.cbFiltruDomeniu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFiltruDomeniu.Margin = new System.Windows.Forms.Padding(2);
             this.cbFiltruDomeniu.Name = "cbFiltruDomeniu";
             this.cbFiltruDomeniu.Size = new System.Drawing.Size(136, 21);
             this.cbFiltruDomeniu.TabIndex = 2;
@@ -266,7 +277,7 @@
             this.cbFiltruStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFiltruStatus.FormattingEnabled = true;
             this.cbFiltruStatus.Location = new System.Drawing.Point(286, 28);
-            this.cbFiltruStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbFiltruStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cbFiltruStatus.Name = "cbFiltruStatus";
             this.cbFiltruStatus.Size = new System.Drawing.Size(114, 21);
             this.cbFiltruStatus.TabIndex = 4;
@@ -291,13 +302,14 @@
             this.lvActivitati.GridLines = true;
             this.lvActivitati.HideSelection = false;
             this.lvActivitati.Location = new System.Drawing.Point(0, 79);
-            this.lvActivitati.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvActivitati.Margin = new System.Windows.Forms.Padding(2);
             this.lvActivitati.MultiSelect = false;
             this.lvActivitati.Name = "lvActivitati";
-            this.lvActivitati.Size = new System.Drawing.Size(406, 132);
+            this.lvActivitati.Size = new System.Drawing.Size(653, 238);
             this.lvActivitati.TabIndex = 5;
             this.lvActivitati.UseCompatibleStateImageBehavior = false;
             this.lvActivitati.View = System.Windows.Forms.View.Details;
+            this.lvActivitati.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvActivitati_ItemDrag);
             this.lvActivitati.SelectedIndexChanged += new System.EventHandler(this.lvActivitati_SelectedIndexChanged);
             this.lvActivitati.DoubleClick += new System.EventHandler(this.lvActivitati_DoubleClick);
             // 
@@ -392,73 +404,124 @@
             // btnAdauga
             // 
             this.btnAdauga.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdauga.Location = new System.Drawing.Point(33, 247);
+            this.btnAdauga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.btnAdauga.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAdauga.ForeColor = System.Drawing.Color.White;
+            this.btnAdauga.Location = new System.Drawing.Point(10, 341);
             this.btnAdauga.Name = "btnAdauga";
             this.btnAdauga.Size = new System.Drawing.Size(110, 35);
             this.btnAdauga.TabIndex = 6;
             this.btnAdauga.Text = "&Adauga";
-            this.btnAdauga.BackColor = System.Drawing.Color.FromArgb(76, 175, 80);
-            this.btnAdauga.ForeColor = System.Drawing.Color.White;
             this.btnAdauga.UseVisualStyleBackColor = false;
             this.btnAdauga.Click += new System.EventHandler(this.btnAdauga_Click);
             // 
             // btnEditeaza
             // 
             this.btnEditeaza.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditeaza.Location = new System.Drawing.Point(149, 247);
+            this.btnEditeaza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.btnEditeaza.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnEditeaza.ForeColor = System.Drawing.Color.White;
+            this.btnEditeaza.Location = new System.Drawing.Point(126, 341);
             this.btnEditeaza.Name = "btnEditeaza";
             this.btnEditeaza.Size = new System.Drawing.Size(110, 35);
             this.btnEditeaza.TabIndex = 7;
             this.btnEditeaza.Text = "&Editeaza";
-            this.btnEditeaza.BackColor = System.Drawing.Color.FromArgb(33, 150, 243);
-            this.btnEditeaza.ForeColor = System.Drawing.Color.White;
             this.btnEditeaza.UseVisualStyleBackColor = false;
             this.btnEditeaza.Click += new System.EventHandler(this.btnEditeaza_Click);
             // 
             // btnSterge
             // 
             this.btnSterge.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSterge.Location = new System.Drawing.Point(265, 247);
+            this.btnSterge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(67)))), ((int)(((byte)(54)))));
+            this.btnSterge.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSterge.ForeColor = System.Drawing.Color.White;
+            this.btnSterge.Location = new System.Drawing.Point(242, 341);
             this.btnSterge.Name = "btnSterge";
             this.btnSterge.Size = new System.Drawing.Size(110, 35);
             this.btnSterge.TabIndex = 8;
             this.btnSterge.Text = "&Sterge";
-            this.btnSterge.BackColor = System.Drawing.Color.FromArgb(244, 67, 54);
-            this.btnSterge.ForeColor = System.Drawing.Color.White;
             this.btnSterge.UseVisualStyleBackColor = false;
             this.btnSterge.Click += new System.EventHandler(this.btnSterge_Click);
             // 
             // btnSalveaza
             // 
             this.btnSalveaza.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSalveaza.Location = new System.Drawing.Point(381, 247);
+            this.btnSalveaza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(125)))), ((int)(((byte)(139)))));
+            this.btnSalveaza.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSalveaza.ForeColor = System.Drawing.Color.White;
+            this.btnSalveaza.Location = new System.Drawing.Point(358, 341);
             this.btnSalveaza.Name = "btnSalveaza";
             this.btnSalveaza.Size = new System.Drawing.Size(110, 35);
             this.btnSalveaza.TabIndex = 9;
             this.btnSalveaza.Text = "Sa&lveaza";
-            this.btnSalveaza.BackColor = System.Drawing.Color.FromArgb(96, 125, 139);
-            this.btnSalveaza.ForeColor = System.Drawing.Color.White;
             this.btnSalveaza.UseVisualStyleBackColor = false;
             this.btnSalveaza.Click += new System.EventHandler(this.btnSalveaza_Click);
             // 
             // lblStatus
             // 
-            this.tsslInfo.Name = "tsslInfo";
-            this.tsslInfo.Text = "Pregatit";
-            //
-            // lblStatus
-            //
-            this.lblStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsslInfo });
-            this.lblStatus.Location = new System.Drawing.Point(0, 346);
+            this.lblStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslInfo});
+            this.lblStatus.Location = new System.Drawing.Point(0, 410);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(588, 22);
+            this.lblStatus.Size = new System.Drawing.Size(885, 22);
             this.lblStatus.TabIndex = 10;
+            // 
+            // tsslInfo
+            // 
+            this.tsslInfo.Name = "tsslInfo";
+            this.tsslInfo.Size = new System.Drawing.Size(48, 17);
+            this.tsslInfo.Text = "Pregatit";
+            // 
+            // vizualizareToolStripMenuItem
+            // 
+            this.vizualizareToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.graficeToolStripMenuItem});
+            this.vizualizareToolStripMenuItem.Name = "vizualizareToolStripMenuItem";
+            this.vizualizareToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.vizualizareToolStripMenuItem.Text = "Vizualizare";
+            // 
+            // graficeToolStripMenuItem
+            // 
+            this.graficeToolStripMenuItem.Name = "graficeToolStripMenuItem";
+            this.graficeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.graficeToolStripMenuItem.Text = "Grafice";
+            this.graficeToolStripMenuItem.Click += new System.EventHandler(this.graficeToolStripMenuItem_Click);
+            // 
+            // tsmiPrevizualizare
+            // 
+            this.tsmiPrevizualizare.Name = "tsmiPrevizualizare";
+            this.tsmiPrevizualizare.Size = new System.Drawing.Size(203, 22);
+            this.tsmiPrevizualizare.Text = "Previzualizare imprimare";
+            this.tsmiPrevizualizare.Click += new System.EventHandler(this.tsmiPrevizualizare_Click);
+            // 
+            // lbZonaFinalizare
+            // 
+            this.lbZonaFinalizare.AutoSize = true;
+            this.lbZonaFinalizare.Location = new System.Drawing.Point(703, 63);
+            this.lbZonaFinalizare.Name = "lbZonaFinalizare";
+            this.lbZonaFinalizare.Size = new System.Drawing.Size(116, 13);
+            this.lbZonaFinalizare.TabIndex = 11;
+            this.lbZonaFinalizare.Text = "Trage aici pt. finalizare:";
+            // 
+            // lbFinalizate
+            // 
+            this.lbFinalizate.AllowDrop = true;
+            this.lbFinalizate.FormattingEnabled = true;
+            this.lbFinalizate.Location = new System.Drawing.Point(663, 79);
+            this.lbFinalizate.Name = "lbFinalizate";
+            this.lbFinalizate.Size = new System.Drawing.Size(210, 238);
+            this.lbFinalizate.TabIndex = 12;
+            this.lbFinalizate.DragDrop += new System.Windows.Forms.DragEventHandler(this.lbFinalizare_DragDrop);
+            this.lbFinalizate.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbFinalizare_DragEnter);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 368);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(885, 432);
+            this.Controls.Add(this.lbFinalizate);
+            this.Controls.Add(this.lbZonaFinalizare);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnSalveaza);
             this.Controls.Add(this.btnSterge);
@@ -472,10 +535,9 @@
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Text = "Agenda de Activitati";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
@@ -483,6 +545,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.contextMenuActivitati.ResumeLayout(false);
+            this.lblStatus.ResumeLayout(false);
+            this.lblStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,5 +598,10 @@
         private System.Windows.Forms.Button btnSalveaza;
         private System.Windows.Forms.StatusStrip lblStatus;
         private System.Windows.Forms.ToolStripStatusLabel tsslInfo;
+        private System.Windows.Forms.ToolStripMenuItem vizualizareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem graficeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPrevizualizare;
+        private System.Windows.Forms.Label lbZonaFinalizare;
+        private System.Windows.Forms.ListBox lbFinalizate;
     }
 }
